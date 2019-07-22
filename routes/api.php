@@ -21,4 +21,27 @@ Route::group(['middleware' => 'json.response'], function () {
 
     Route::post('login', 'Auth\AuthController@login')->name('login');
 
+	Route::get('product/shop-view', 'ProductController@shopView');
+
+    Route::get('brand', 'BrandController@index');
+
+    Route::get('category', 'CategoryController@index');
+
+    Route::group(['middleware' => 'auth:api'], function ($router) {
+
+        Route::post('/logout', 'Auth\AuthController@logout');
+        Route::get('user', 'Auth\AuthController@user');
+
+        Route::post('brand/store', 'BrandController@store');
+
+
+    	Route::post('category/store', 'CategoryController@store');
+
+        Route::get('product', 'ProductController@index');
+    	Route::post('product/store', 'ProductController@store');
+        Route::put('product/update/{id}', 'ProductController@update');
+        Route::delete('product/delete/{id}', 'ProductController@destroy');
+
+    	
+    });
 });

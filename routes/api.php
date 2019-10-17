@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'json.response'], function () {
 
+    Route::get('users', 'Auth\AuthController@users');
+
     Route::post('login', 'Auth\AuthController@login')->name('login');
 
 	Route::get('product/shop-view', 'ProductController@shopView');
@@ -26,6 +28,8 @@ Route::group(['middleware' => 'json.response'], function () {
     Route::get('brand', 'BrandController@index');
 
     Route::get('category', 'CategoryController@index');
+
+    Route::post('order', 'OrderController@store');
 
     Route::group(['middleware' => 'auth:api'], function ($router) {
 

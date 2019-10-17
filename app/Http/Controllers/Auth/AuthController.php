@@ -13,6 +13,9 @@ use GuzzleHttp\Client;
 
 class AuthController extends Controller
 {
+    public function users() {
+        return User::all();
+    }
     public function login(Request $request)
     {
         $http = new Client();
